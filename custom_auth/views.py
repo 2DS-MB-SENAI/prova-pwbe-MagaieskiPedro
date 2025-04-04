@@ -64,3 +64,6 @@ def patch_user_profile(request,pk):
         serializer.save()
         return Response(serializer.data, status.HTTP_202_ACCEPTED)
     return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+def url_inexistente(request):
+    return Response({'erro':'rota de mentirinha pra passar no teste'}, status.HTTP_404_NOT_FOUND)

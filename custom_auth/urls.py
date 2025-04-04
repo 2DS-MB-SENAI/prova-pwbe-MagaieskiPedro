@@ -6,4 +6,5 @@ urlpatterns = [
     path('auth/login/', view=views.login, name="login user"),
     path('auth/profile/', view=views.get_user_profile, name="protected user profile"),
     path('auth/profile/', view=views.patch_user_profile, name="protected updade profile"),
+    path('url-inexistente/', view=views.url_inexistente, name="url de erro"),
 ]
