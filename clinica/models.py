@@ -3,7 +3,6 @@ import datetime
 from django.utils import timezone
 now = timezone.now()
 from django.core.validators import MinValueValidator,MinLengthValidator
-import re
 ESPECIALIDADES = [
     ("CAR","CARDIOLOGIA"),
     ("UR","UROLOGIA"),
