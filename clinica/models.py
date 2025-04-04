@@ -18,7 +18,7 @@ STATUS = {
 class Medico(models.Model):
     nome = models.CharField(max_length=50, validators=[MinLengthValidator(5,'o campo deve ter no minimo 5 caracteres')])
     especialidade = models.CharField(max_length=15,choices=ESPECIALIDADES)
-    crm = models.CharField(unique=True)
+    crm = models.CharField(unique=True,max_length=50)
     email = models.EmailField(blank=False)
     
     def __str__(self):
