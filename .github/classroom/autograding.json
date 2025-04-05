@@ -130,28 +130,28 @@
     },
     {
       "name": "19. Teste Registro - Sucesso",
-      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/register/', json.dumps({'username':'testuser1', 'password':'ValidPass123!', 'phone':'+5511999999999'}), content_type='application/json'); print('PASS' if r.status_code == 201 and 'message' in str(r.content) else 'FAIL')\"",
+      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/register/', json.dumps({\\\"username\\\":\\\"testuser1\\\", '\\\"password\\\":\\\"ValidPass123!\\\", \\\"phone\\\":\\\"+5511999999999\\\"}), content_type='application/json'); print('PASS' if r.status_code == 201 and 'message' in str(r.content) else 'FAIL')\"",
       "output": "PASS",
       "timeout": 15,
       "points": 4
   },
   {
       "name": "20 Teste Registro - Senha Fraca",
-      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/register/', json.dumps({'username':'testuser2', 'password':'weak', 'phone':'+5511888888888'}), content_type='application/json'); print('PASS' if r.status_code == 400 and 'password' in str(r.content) else 'FAIL')\"",
+      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/register/', json.dumps({\\\"username\\\":\\\"testuser2\\\", \\\"password\\\":\\\"weak\\\", \\\"phone\\\":\\\"+5511888888888\\\"}), content_type='application/json'); print('PASS' if r.status_code == 400 and 'password' in str(r.content) else 'FAIL')\"",
       "output": "PASS",
       "timeout": 15,
       "points": 4
   },
   {
       "name": "22. Teste Login - Sucesso",
-      "run": "python manage.py shell -c \"from django.test import Client; import json; from custom_auth.models import CustomUser; CustomUser.objects.create_user(username='testuser4', password='ValidPass123!', phone='+5511777777777'); r = Client().post('/auth/login/', json.dumps({'username':'testuser4', 'password':'ValidPass123!'}), content_type='application/json'); print('PASS' if r.status_code == 200 and 'access' in str(r.content) and 'refresh' in str(r.content) else 'FAIL')\"",
+      "run": "python manage.py shell -c \"from django.test import Client; import json; from custom_auth.models import CustomUser; CustomUser.objects.create_user(username='testuser4', password='ValidPass123!', phone='+5511777777777'); r = Client().post('/auth/login/', json.dumps({\\\"username\\\":\\\"testuser4\\\", \\\"password\\\":\\\"ValidPass123!\\\"}), content_type='application/json'); print('PASS' if r.status_code == 200 and 'access' in str(r.content) and 'refresh' in str(r.content) else 'FAIL')\"",
       "output": "PASS",
       "timeout": 15,
       "points": 4
   },
   {
       "name": "23. Teste Login - Credenciais Inválidas",
-      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/login/', json.dumps({'username':'nonexistent', 'password':'wrong'}), content_type='application/json'); print('PASS' if r.status_code == 401 else 'FAIL')\"",
+      "run": "python manage.py shell -c \"from django.test import Client; import json; r = Client().post('/auth/login/', json.dumps({\\\"username\\\":\\\"nonexistent\\\", \\\"password\\\":'\\\"wrong\\\"}), content_type='application/json'); print('PASS' if r.status_code == 401 else 'FAIL')\"",
       "output": "PASS",
       "timeout": 15,
       "points": 4
@@ -179,7 +179,7 @@
   },
   {
       "name": "28. Teste Token Refresh",
-      "run": "python manage.py shell -c \"from django.test import Client; import json; from custom_auth.models import CustomUser; from rest_framework_simplejwt.tokens import RefreshToken; user = CustomUser.objects.create_user(username='testuser10', password='ValidPass123!', phone='+5511333333333'); refresh = RefreshToken.for_user(user); r = Client().post('/auth/token/refresh/', json.dumps({'refresh':str(refresh)}), content_type='application/json'); print('PASS' if r.status_code == 200 and 'access' in str(r.content) else 'FAIL')\"",
+      "run": "python manage.py shell -c \"from django.test import Client; import json; from custom_auth.models import CustomUser; from rest_framework_simplejwt.tokens import RefreshToken; user = CustomUser.objects.create_user(username='testuser10', password='ValidPass123!', phone='+5511333333333'); refresh = RefreshToken.for_user(user); r = Client().post('/auth/token/refresh/', json.dumps({\\\"refresh\\\":str(refresh)}), content_type='application/json'); print('PASS' if r.status_code == 200 and 'access' in str(r.content) else 'FAIL')\"",
       "output": "PASS",
       "timeout": 20,
       "points": 6
